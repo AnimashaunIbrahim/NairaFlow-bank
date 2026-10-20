@@ -74,3 +74,29 @@ export const EXCHANGE_RATES = {
   EUR: 0.000578,
   CAD: 0.000938,
 };
+
+export function generateCustomers(count = 12) {
+  const riskActions = ['default', 'default', 'allow', 'default', 'deny'];
+
+  return Array.from({ length: count }, (_, i) => {
+    const name = NIGERIAN_NAMES[i % NIGERIAN_NAMES.length];
+    const [firstName, lastName = ''] = name.split(' ');
+    const daysAgo = Math.floor(Math.random() * 120) + i * 3;
+    const createdAt = new Date(Date.now() - daysAgo * 24 * 60 * 60 * 1000).toISOString();
+
+    return {
+      id: 907000000 + i,
+      customerCode: `CUS_${(Math.random().toString(36) + '000000000000').slice(2, 16)}`,
+      email: `${firstName.toLowerCase()}.${lastName.toLowerCase()}@example.com`,
+      firstName,
+      lastName,
+      phone: `+23480${String(Math.floor(Math.random() * 90000000) + 10000000)}`,
+      metadata: {},
+      riskAction: riskActions[i % riskActions.length],
+      domain: 'test',
+      createdAt,
+      updatedAt: createdAt,
+      displayName: name,
+    };
+  });
+}

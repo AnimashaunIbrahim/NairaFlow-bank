@@ -6,7 +6,7 @@
 
 /**
  * Format an integer kobo amount into a display string.
- * e.g. 245000000 → "₦2,450,000.00"
+ * e.g. 245000000 â†’ "â‚¦2,450,000.00"
  */
 export function formatKobo(kobo) {
   const naira = kobo / 100;
@@ -19,7 +19,7 @@ export function formatKobo(kobo) {
 
 /**
  * Format any amount in any currency.
- * e.g. formatCurrency(1500, 'USD') → "$1,500.00"
+ * e.g. formatCurrency(1500, 'USD') â†’ "$1,500.00"
  */
 export function formatCurrency(amount, currency) {
   return new Intl.NumberFormat('en-NG', {
@@ -31,7 +31,7 @@ export function formatCurrency(amount, currency) {
 
 /**
  * Format an ISO date string into a human-readable relative date.
- * e.g. "2026-09-07T14:32:00Z" → "Today, 14:32" or "5 Sep 2026"
+ * e.g. "2026-09-07T14:32:00Z" â†’ "Today, 14:32" or "5 Sep 2026"
  */
 export function formatDate(isoString) {
   const date = new Date(isoString);
@@ -64,7 +64,7 @@ export function getGreeting() {
 }
 
 /**
- * Nigerian bank code → name mapping.
+ * Nigerian bank code â†’ name mapping.
  * This matches the grouped bank list from SendMoneyForm.jsx
  */
 const BANKS = {
@@ -125,7 +125,7 @@ export function categorizeTransaction(description) {
     return 'Electricity'; 
   }
 
-  if(desc.includes('úsd top-up') || desc.includes('water-bill') || desc.includes('top-up')){
+  if(desc.includes('Ãºsd top-up') || desc.includes('water-bill') || desc.includes('top-up')){
     return 'Online Payment';
   }
 

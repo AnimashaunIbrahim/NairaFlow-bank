@@ -47,3 +47,27 @@ export interface Insight {
   detail: string;
   confidence: number; // 0.0 to 1.0
 }
+
+export type CustomerRiskAction = 'default' | 'allow' | 'deny';
+
+export interface Customer {
+  id: number;
+  customerCode: string;
+  email: string;
+  firstName: string;
+  lastName: string;
+  phone: string;
+  metadata: Record<string, unknown>;
+  riskAction: CustomerRiskAction;
+  domain: string;
+  createdAt: string;
+  updatedAt: string;
+  displayName: string;
+}
+
+export interface CustomerPagination {
+  perPage: number;
+  page?: number;
+  next: string | null;
+  previous: string | null;
+}

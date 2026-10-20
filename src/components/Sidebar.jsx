@@ -6,6 +6,7 @@ const NAV_ITEMS = [
   { to: '/', label: 'Dashboard', icon: '📊' },
   { to: '/send', label: 'Send Money', icon: '💸' },
   { to: '/savings', label: 'Savings', icon: '🏦' },
+  { to: '/customers', label: 'Customers', icon: '👥' },
   { to: '/settings', label: 'Settings', icon: '⚙️' },
 ];
 

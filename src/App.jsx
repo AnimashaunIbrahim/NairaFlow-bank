@@ -9,6 +9,8 @@ import DashboardPage from './pages/DashboardPage';
 import SendMoneyPage from './pages/SendMoneyPage';
 import SavingsPage from './pages/SavingsPage';
 import SettingsPage from './pages/SettingsPage';
+import CustomersPage from './pages/CustomersPage';
+import CustomerDetailPage from './pages/CustomerDetailPage';
 import NotFoundPage from './pages/NotFoundPage';
 
 const queryClient = new QueryClient({
@@ -84,6 +86,14 @@ function DashboardLayout() {
             style={({ isActive }) => (isActive ? { background: 'var(--color-brand-light)', color: 'var(--color-brand-dark)' } : { color: 'var(--color-text-secondary)' })}
           >
             🏦 Savings
+          </NavLink>
+          <NavLink
+            to="/customers"
+            onClick={() => setMobileMenuOpen(false)}
+            className="px-3 py-2 rounded-lg text-sm font-medium"
+            style={({ isActive }) => (isActive ? { background: 'var(--color-brand-light)', color: 'var(--color-brand-dark)' } : { color: 'var(--color-text-secondary)' })}
+          >
+            👥 Customers
           </NavLink>
           <NavLink
             to="/settings"
@@ -254,6 +264,8 @@ export default function App() {
                     <Route path="/" element={<DashboardPage />} />
                     <Route path="/send" element={<SendMoneyPage />} />
                     <Route path="/savings" element={<SavingsPage />} />
+                    <Route path="/customers" element={<CustomersPage />} />
+                    <Route path="/customers/:code" element={<CustomerDetailPage />} />
                     <Route path="/settings" element={<SettingsPage />} />
                   </Route>
                 </Route>
