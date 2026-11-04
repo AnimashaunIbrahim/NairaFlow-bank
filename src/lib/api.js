@@ -111,12 +111,50 @@ export async function fetchSavings() {
 
 /**
  * Exchange Rate API Functions
- * Currently using MSW, to be integrated with Paystack or external API
+ * Integrated with OpenExchangeRates API
  */
 
 export async function fetchRates() {
+  // Use OpenExchangeRates API if not in mock mode
+  if (!paystackConfig.useMock) {
+    try {
+      const { getExchangeRateService } = await import('./services/exchangeRateService.js');
+      const exchangeRateService = getExchangeRateService();
+      const ratesData = await exchangeRateService.getLatestRates();
+      return ratesData;
+    } catch (error) {
+      console.error('Failed to fetch rates from OpenExchangeRates, falling back to MSW:', error);
+      // Fallback to MSW
+      const data = await apiFetch('/api/rates');
+      return data;
+    }
+  }
+  
+  // Fallback to MSW for development
   const data = await apiFetch('/api/rates');
   return data;
+}
+
+export async function convertCurrency(amount, from, to) {
+  if (!paystackConfig.useMock) {
+    try {
+      const { getExchangeRateService } = await import('./services/exchangeRateService.js');
+      const exchangeRateService = getExchangeRateService();
+      const converted = await exchangeRateService.convert(amount, from, to);
+      return converted;
+    } catch (error) {
+      console.error('Failed to convert currency:', error);
+      throw error;
+    }
+  }
+  
+  // For mock, use simple calculation
+  const rates = await fetchRates();
+  if (!rates?.rates) throw new Error('Rates not available');
+  const fromRate = rates.rates[from] || 1;
+  const toRate = rates.rates[to] || 1;
+  const amountInNGN = amount / fromRate;
+  return amountInNGN * toRate;
 }
 
 /**

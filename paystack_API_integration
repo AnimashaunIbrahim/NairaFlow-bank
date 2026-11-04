@@ -17,8 +17,6 @@ This document outlines the architectural approach for transitioning from MSW (Mo
 **Implementation:**
 ```bash
 # Local development
-VITE_PAYSTACK_SECRET_KEY=sk_test_84b5119f93abdbfd0c65c8c51f18578e1c932f17
-VITE_PAYSTACK_PUBLIC_KEY=pk_test_5a7415337bbb302f76073afd96771c9b964162b3
 VITE_API_ENVIRONMENT=test
 VITE_PAYSTACK_BASE_URL=https://api.paystack.co
 ```

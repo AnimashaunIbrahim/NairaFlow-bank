@@ -69,10 +69,10 @@ export const SAVINGS_PLANS = [
 
 export const EXCHANGE_RATES = {
   NGN: 1,
-  USD: 0.000678,
-  GBP: 0.000505,
-  EUR: 0.000578,
-  CAD: 0.000938,
+  USD: 0.000667,
+  EUR: 0.000617,
+  GBP: 0.000524,
+  AED: 0.002451,
 };
 
 export function generateCustomers(count = 12) {
